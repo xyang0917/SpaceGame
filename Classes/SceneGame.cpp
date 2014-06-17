@@ -35,6 +35,16 @@ void SceneGame::update(float dt)
 {
 	updateCallByChild(dt);  //调用父类的方法，让背景动起来
 
+	//响应加速计
+	//auto winSize = Director::getInstance()->getWinSize();
+	float maxY = winSize.height - _ship->getContentSize().height / 2;
+	float minY = _ship->getContentSize().height / 2;
+
+	float diff = (_shipPointsPerSecY * dt);
+	float newY = _ship->getPosition().y + diff;
+	newY = MIN(MAX(newY, minY), maxY);
+	_ship->setPosition(ccp(_ship->getPosition().x, newY));
+
 	float curTimeMillis = getTimeTick();
 	if (curTimeMillis > _nextAsteroidSpawn)
 	{
