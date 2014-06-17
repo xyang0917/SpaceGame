@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?> 
+<plist>
+<dict>
+<key>people1</key> 
+<string>许佳音工作室出品</string>
+<key>people2</key> 
+<string>总监：许佳音</string> 
+<key>people3</key> 
+<string>程序：姜博</string>
+<key>people4</key> 
+<string>美术：马俊</string>
+<key>people5</key>
+<string>改编：传智播客C++03.13班级</string>
+</dict>
+</plist>
