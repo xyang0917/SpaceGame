@@ -1,9 +1,23 @@
 #include "SceneGame.h"
 #include "SceneStart.h"
 
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+extern char gMindWaveValue[512];
+#else
+char gMindWaveValue[512] = {0};
+#endif
+LabelBMFont * labelLives;
+
 bool SceneGame::init()
 {
 	LayerSBGOfParallax::init();
+
+	gMindWaveValue[511] = NULL;
+
+	labelLives = LabelBMFont::create("XXXX", "fonts/Arial.fnt");
+	labelLives->setScale(0.5);
+	labelLives->setPosition(Point(winSize.width*0.6, winSize.height*0.92));
+	this->addChild(labelLives);
 
 	_nextAsteroid = 0;
 	_nextShipLaser = 0;
@@ -37,6 +51,8 @@ bool SceneGame::init()
 void SceneGame::update(float dt)
 {
 	updateCallByChild(dt);  //调用父类的方法，让背景动起来
+
+	labelLives->setString(gMindWaveValue);
 
 	//响应加速计
 	//auto winSize = Director::getInstance()->getWinSize();
@@ -201,6 +217,7 @@ void SceneGame::onAcceleration(Acceleration* acc, Event* unused_event)
 #define KSHIPMAXPOINTSPERSEC (winSize.height*0.5)
 #define KMAXDIFFX 0.2
 
+
 	double rollingX = 0.0;
 
 	// Cocos2DX inverts X and Y accelerometer depending on device orientation
@@ -209,6 +226,7 @@ void SceneGame::onAcceleration(Acceleration* acc, Event* unused_event)
 	rollingX = (acc->x * KFILTERINGFACTOR) + (rollingX * (1.0 - KFILTERINGFACTOR));
 	float accelX = acc->x - rollingX;
 	float accelDiff = accelX - KRESTACCELX;
+
 	float accelFraction = accelDiff / KMAXDIFFX;
 	_shipPointsPerSecY = KSHIPMAXPOINTSPERSEC * accelFraction;
 }
