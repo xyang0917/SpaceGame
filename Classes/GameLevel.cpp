@@ -6,6 +6,10 @@ bool CGameLevel::init()
 {
 	LayerBack::init();
 
+	g_iGameLevel = 1;
+	size = winSize;
+
+
 	// 选关列表
 	SpriteFrameCache *pCache = SpriteFrameCache::sharedSpriteFrameCache();
 	pCache->addSpriteFramesWithFile("Image/GameLevel.plist");

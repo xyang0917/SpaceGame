@@ -30,9 +30,9 @@ private:
 
 	ParticleSun* m_pSun;		//太阳特效
 
-	int g_iGameLevel = 1;
-	Size size = winSize;
-	Sprite* _pSprite;   //背景精灵
+	int g_iGameLevel;
+	Size size;
+	Sprite* _pSprite; //背景精灵
 };
 
 #endif

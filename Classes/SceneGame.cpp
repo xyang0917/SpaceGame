@@ -5,6 +5,9 @@ bool SceneGame::init()
 {
 	LayerSBGOfParallax::init();
 
+	_nextAsteroid = 0;
+	_nextShipLaser = 0;
+
 	//Ó¢ÐÛ·É´¬³ö³¡
 	createHero();
 
@@ -198,7 +201,7 @@ void SceneGame::onAcceleration(Acceleration* acc, Event* unused_event)
 #define KSHIPMAXPOINTSPERSEC (winSize.height*0.5)
 #define KMAXDIFFX 0.2
 
-	double rollingX;
+	double rollingX = 0.0;
 
 	// Cocos2DX inverts X and Y accelerometer depending on device orientation
 	// in landscape mode right x=-y and y=x !!! (Strange and confusing choice)

@@ -22,10 +22,10 @@ public:
 
 	Sprite* _ship;
 	Vector<Sprite*> _asteroids;   //储存创建的星球
-	int _nextAsteroid = 0;
+	int _nextAsteroid;
 	float _nextAsteroidSpawn;     //指示下一个陨石出现的时间点。我们会在update循环中一直检测这个变量的值。
 	Vector<Sprite*> _shipLasers;  //储存创建的激光
-	int _nextShipLaser = 0;
+	int _nextShipLaser;
 
 	float _shipPointsPerSecY;
 
