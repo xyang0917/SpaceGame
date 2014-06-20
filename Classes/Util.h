@@ -11,9 +11,16 @@ class Util
 public:
 	static Scene* scene(Layer* layer)
 	{
-		auto scene = Scene::create();
+		Scene* scene = Scene::create();
 		scene->addChild(layer);
 		return scene;
+	}
+
+	static void replaceScene(Layer* layer)
+	{
+		Scene* scene = Scene::create();
+		scene->addChild(layer);
+		Director::getInstance()->replaceScene(scene);
 	}
 
 	static int GetPlaneID(){

@@ -4,8 +4,8 @@
 
 USING_NS_CC;
 
-AppDelegate::AppDelegate() {
-
+AppDelegate::AppDelegate() 
+{
 }
 
 AppDelegate::~AppDelegate() 
@@ -21,8 +21,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
         director->setOpenGLView(glview);
     }
 	
-	glview->setDesignResolutionSize(480, 320, kResolutionExactFit);
-	glview->setFrameSize(600,320);
+	//glview->setFrameSize(480, 320);
+	glview->setDesignResolutionSize(480, 320, ResolutionPolicy::EXACT_FIT);
 	
     // turn on display FPS
     //director->setDisplayStats(true);

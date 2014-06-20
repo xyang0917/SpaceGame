@@ -1,9 +1,9 @@
 #ifndef __LayerScrollBackGround_H__
 #define __LayerScrollBackGround_H__
 
-#include "LayerBack.h"
+#include "Util.h"
 
-class LayerScrollBackGround : public LayerBack
+class LayerScrollBackGround : public Layer
 {
 public:
 	CREATE_FUNC(LayerScrollBackGround);

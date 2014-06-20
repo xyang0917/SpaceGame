@@ -1,15 +1,13 @@
 #ifndef __SCENE_ABOUT_H__
 #define __SCENE_ABOUT_H__
 
-#include "LayerBackGround.h"
+#include "Util.h"
 
-class SceneAbout : public LayerBackGround
+class SceneAbout : public Layer
 {
 public:
 	CREATE_FUNC(SceneAbout);
-
 	bool init();
-	void back(Object*);
 };
 
 #endif

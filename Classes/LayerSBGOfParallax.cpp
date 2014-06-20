@@ -1,16 +1,16 @@
 #include "LayerSBGOfParallax.h"
+#include "SceneStart.h"
+#include "GameLevel.h"
 
 bool LayerSBGOfParallax::init()
 {
-	LayerBack::init();
+	Layer::init();
 
-	//把所有的图片存储在一张图片里面，然后使用这个 BatchNode 
-	//就可以仅使用一次 opengl 调用来做所有的绘图操作。
-	//使用一张大的图片创建一个 CCSpriteBatchNode 对象来批处理所有的对
-	//象的描绘操作。接收的参数是 Sprites.pvr.ccz。
-	_batchNode = SpriteBatchNode::create("Sprites.pvr.ccz");
-	this->addChild(_batchNode);
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Sprites.plist");
+	LayerBackButton* backSprite = LayerBackButton::create([](Ref*){
+		Util::replaceScene(CGameLevel::create());
+	});
+	addChild(backSprite);
+	backSprite->setZOrder(1000);
 
 
 	// 1) Create the CCParallaxNode
@@ -39,7 +39,6 @@ bool LayerSBGOfParallax::init()
 
 	//this->scheduleUpdate();
 
-	_menu->setZOrder(EN_ORDER_BACK_MENU);
 	return true;
 }
 
