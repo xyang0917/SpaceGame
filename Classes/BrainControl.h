@@ -8,6 +8,7 @@ class BrainControl : public Layer
 public:
 	bool init();
 	CREATE_FUNC(BrainControl);
+	virtual void update(float dt);
 
 	Vector<SpriteFrame *> _animFrames;
 
