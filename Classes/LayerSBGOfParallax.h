@@ -1,10 +1,11 @@
 #ifndef __LSBGPARALLAX_H__
 #define __LSBGPARALLAX_H__
 
-#include "LayerBack.h"
+#include "Util.h"
+#include "LayerBackGround.h"
 #include "ParallaxNodeExtras.h"
 
-class LayerSBGOfParallax : public LayerBack
+class LayerSBGOfParallax : public Layer
 {
 public:
 	CREATE_FUNC(LayerSBGOfParallax);
@@ -17,8 +18,6 @@ public:
 	//在父类中实现后，在子类中实现会当机！所以只能这样了，
 	//在子类中来调用父类的这个函数。
 	void updateCallByChild(float dt);
-
-	SpriteBatchNode* _batchNode;
 
 	ParallaxNodeExtras *_backgroundNode;
 	Sprite *_spacedust1;

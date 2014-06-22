@@ -1,9 +1,18 @@
 #include "SceneAbount.h"
 #include "SceneStart.h"
+#include "LayerBackGround.h"
 
 bool SceneAbout::init()
 {
-	LayerBackGround::init();
+	Layer::init();
+
+	LayerBackGround* bgLayer = LayerBackGround::create("Image/background1.png");
+	addChild(bgLayer);
+
+	LayerBackButton* backLayer = LayerBackButton::create([](Ref*){
+		Util::replaceScene(SceneStart::create());
+	});
+	addChild(backLayer);
 
 	auto dict = Dictionary::createWithContentsOfFile("about.xml");
 
@@ -18,17 +27,8 @@ bool SceneAbout::init()
 		addChild(label);
 		label->setPosition(ccp(50, winSize.height - (i+1)*fontSize));
 		label->setAnchorPoint(ccp(0, .5));
-		label->setColor(ccRED);
+		label->setColor(Color3B(255,255,255));
 	}
 
-	this->_menuItem->setTarget(this, menu_selector(SceneAbout::back));
-
 	return true;
-}
-
-void SceneAbout::back(Object*)
-{
-	SceneStart* layer = SceneStart::create();
-	auto scene = Util::scene(layer);
-	Director::getInstance()->replaceScene(scene);
 }

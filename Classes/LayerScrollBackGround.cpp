@@ -3,7 +3,7 @@
 
 bool LayerScrollBackGround::init()
 {
-	LayerBack::init();
+	Layer::init();
 
 	// 创建滚动的背景
 
@@ -29,8 +29,6 @@ bool LayerScrollBackGround::init()
 	auto placeSec = Place::create(ccp(winSize.width / 2 + width, winSize.height / 2));
 	auto seqSec = Sequence::create(placeSec, moveBySec, NULL);
 	spriteSec->runAction(RepeatForever::create(seqSec));
-
-	_menu->setZOrder(EN_ORDER_BACK_MENU);
 
 	return true;
 }

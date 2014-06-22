@@ -1,11 +1,10 @@
 #include "AppDelegate.h"
-#include "SceneStart.h"
-#include "Util.h"
+#include "HelloWorldScene.h"
 
 USING_NS_CC;
 
-AppDelegate::AppDelegate() 
-{
+AppDelegate::AppDelegate() {
+
 }
 
 AppDelegate::~AppDelegate() 
@@ -15,23 +14,26 @@ AppDelegate::~AppDelegate()
 bool AppDelegate::applicationDidFinishLaunching() {
     // initialize director
     auto director = Director::getInstance();
-    auto glview = director->getOpenGLView();
-    if(!glview) {
-        glview = GLView::create("My Game");
-        director->setOpenGLView(glview);
-    }
-	
-	//glview->setFrameSize(480, 320);
-	glview->setDesignResolutionSize(480, 320, ResolutionPolicy::EXACT_FIT);
+
+	auto eglView = director->getOpenGLView();
+	if (!eglView)
+	{
+		eglView = GLView::create("My Game");
+		director->setOpenGLView(eglView);
+	}
+    //director->setOpenGLView(eglView);
 	
     // turn on display FPS
-    //director->setDisplayStats(true);
+    director->setDisplayStats(true);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 
+	//eglView->setDesignResolutionSize(480, 320, kResolutionExactFit);
+	eglView->setDesignResolutionSize(480, 320, kResolutionExactFit);
+
     // create a scene. it's an autorelease object
-    auto scene = Util::scene(SceneStart::create());
+    auto scene = HelloWorld::createScene();
 
     // run
     director->runWithScene(scene);
@@ -44,7 +46,7 @@ void AppDelegate::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
 
     // if you use SimpleAudioEngine, it must be pause
-    // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+    // SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 }
 
 // this function will be called when the app is active again
@@ -52,5 +54,5 @@ void AppDelegate::applicationWillEnterForeground() {
     Director::getInstance()->startAnimation();
 
     // if you use SimpleAudioEngine, it must resume here
-    // SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+    // SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }

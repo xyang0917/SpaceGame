@@ -1,6 +1,7 @@
 #ifndef __SCENE_GAME_H__
 #define __SCENE_GAME_H__
 
+#include "BrainControl.h"
 #include "LayerSBGOfParallax.h"
 #include "SimpleAudioEngine.h"
 using namespace CocosDenshion;
@@ -13,8 +14,8 @@ class SceneGame : public LayerSBGOfParallax
 public:
 	CREATE_FUNC(SceneGame);
 	virtual bool init();
-	void back(Object*);
 	virtual void update(float dt);
+	virtual void onEnter();
 	virtual bool onTouchBegan(Touch *touch, Event *event);
 	virtual void onAcceleration(Acceleration* acc, Event* unused_event);  //重力感应
 
@@ -27,17 +28,31 @@ public:
 	Vector<Sprite*> _shipLasers;  //储存创建的激光
 	int _nextShipLaser;
 
+	SpriteBatchNode* _batchNode;
+
 	float _shipPointsPerSecY;
 
 	void createHero();			//创建英雄
 	void createGrainStar();     //使用粒子系统创建星星
 	void InitAsteroid();		//初始化星球
+	void AsteroidBlast(const Point& point);		//星球爆炸
 	void InitShipLasers();		//初始化激光
 	void initAudio();			//加载游戏中需要用到的音乐
+	void ShipAccelerate(const Point& point);  //飞船加速效果
 
 	float getTimeTick();
 	void setInvisible(Node * node);
 	float randomValueBetween(float low, float high);
+
+	double _gameOverTime;
+	bool _gameOver;
+	int _lives;
+
+	BrainControl* _brainControlShow;
+
+	void ResponseAcceleration(float dt); //响应加速计
+	void GenerationAsteroid();  //产生星球
+	void HitCheck();  //碰撞检测
 };
 
 #endif
