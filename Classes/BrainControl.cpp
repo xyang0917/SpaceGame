@@ -58,7 +58,7 @@ bool BrainControl::init()
 	//ÄÔ²¨Ïà¹Ø
 	_Attention = 0;
 	_PoolSignal = 0;
-	_Attack = 0;
+	_Attack = 30;
 	return true;
 }
 
@@ -77,7 +77,7 @@ void BrainControl::Brain()
 	iPoolSignal = getPoorSignal();
 	iBlink = getBlink();
 	iAttention = getAttention();
-	gAttack = iAttention;
+	_Attack = iAttention;
 #else
 	iAttention = 100;
 #endif
